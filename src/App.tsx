@@ -1,9 +1,8 @@
-import "./App.css";
-
 function App() {
   return (
     <>
       <button
+        style={{ width: "50px", height: "30px" }}
         onClick={() => {
           fetch("http://localhost:8000/")
             .then((response) => response.json())
