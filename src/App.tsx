@@ -7,6 +7,7 @@ import st from "./App.module.scss";
 
 function App() {
   const [dbDatas, setDbDatas] = useState<DBDatas[]>();
+  const [match, setMatch] = useState<string>("");
   useEffect(() => {
     fetch("http://localhost:8000/")
       .then((response) => response.json())
@@ -15,14 +16,14 @@ function App() {
       });
   }, []);
 
-  dbDatas && console.log(dbDatas);
+  // dbDatas && console.log(dbDatas);
 
   return (
     <section className={st.app}>
       {dbDatas && (
         <>
-          <Chapter dbDatas={dbDatas} />
-          <Note dbDatas={dbDatas} />
+          <Chapter dbDatas={dbDatas} setMatch={setMatch} />
+          <Note dbDatas={dbDatas} match={match} />
         </>
       )}
     </section>

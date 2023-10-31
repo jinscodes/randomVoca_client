@@ -12,3 +12,8 @@ interface Words {
   name: string;
   color: string;
 }
+
+export interface NoteData {
+  en: Words[];
+  ko: Words[];
+}
