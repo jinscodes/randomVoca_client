@@ -12,11 +12,16 @@ function App() {
     fetch("http://localhost:8000/")
       .then((response) => response.json())
       .then((payload) => {
+        setDbDatas([]);
         setDbDatas(payload);
       });
-  }, []);
 
-  // dbDatas && console.log(dbDatas);
+    fetch("http://localhost:8000/login")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
 
   return (
     <section className={st.app}>
