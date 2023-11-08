@@ -20,15 +20,7 @@ function App() {
         setDbDatas([]);
         setDbDatas(payload);
       });
-
-    // fetch("http://localhost:8000/login")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
   }, []);
-
-  // console.log(cookies.login);
 
   return (
     <section className={st.app}>
