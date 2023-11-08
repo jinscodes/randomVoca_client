@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useCookies } from "react-cookie";
 import st from "./Login.module.scss";
 
 interface FromDB {
@@ -9,24 +10,21 @@ interface FromDB {
 const Login = () => {
   const [id, setId] = useState<string>();
   const [pw, setPw] = useState<string>();
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [cookies, setCookies] = useCookies(["login"]);
 
-  const postLogin = () => {
-    fetch("http://localhost:8000/login")
+  const postLogin = async () => {
+    await fetch("http://localhost:8000/login", {
+      method: "POST",
+      body: JSON.stringify({
+        id: id,
+        pw: pw,
+      }),
+    })
       .then((res) => res.json())
-      .then((payload) => {
-        console.log(payload);
-        const matchedId = payload.filter((data: FromDB) => data?.id === id);
-        const matchedPw = matchedId.filter((data: FromDB) => {
-          return data.pw === pw;
-        });
-        setIsLogin(matchedPw);
+      .then((data) => {
+        setCookies("login", data.token);
       });
   };
-
-  useEffect(() => {
-    console.log(isLogin);
-  }, [isLogin]);
 
   return (
     <section className={st.login}>
