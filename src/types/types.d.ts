@@ -14,6 +14,6 @@ interface Words {
 }
 
 export interface NoteData {
-  en: Words[];
-  ko: Words[];
+  en: string;
+  ko: string;
 }

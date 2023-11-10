@@ -1,4 +1,5 @@
 .chapter_container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,6 +29,20 @@
   }
 
   .chapter:active {
+    background-color: rgba($color: #000000, $alpha: 0.1);
+  }
+
+  .logout {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    bottom: 50px;
+    right: 30px;
+    border-radius: 12px;
+  }
+
+  .logout:hover {
     background-color: rgba($color: #000000, $alpha: 0.1);
   }
 }

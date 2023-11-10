@@ -8,21 +8,56 @@ interface Prop {
 }
 
 const Note = ({ dbDatas, match }: Prop) => {
-  const [noteData, setNoteData] = useState<NoteData>();
+  const [noteData, setNoteData] = useState<NoteData[]>([
+    {
+      en: "",
+      ko: "",
+    },
+  ]);
   const title = match.split("|")[0];
   const chapter = match.split("|")[1];
+  const filteredDatas = dbDatas.filter((data) => data.title === title);
+  const en = filteredDatas[0] && filteredDatas[0].words_en;
+  const ko = filteredDatas[0] && filteredDatas[0].words_ko;
 
   useEffect(() => {
-    dbDatas.filter(
-      (data) =>
-        data.title === title &&
-        setNoteData({ en: data.words_en, ko: data.words_ko })
-    );
+    if (en && ko) {
+      setNoteData([]);
+      for (let i = 0; i < en.length; i++) {
+        setNoteData((prev) => [
+          ...prev,
+          {
+            en: en[i].name,
+            ko: ko[i].name,
+          },
+        ]);
+      }
+    }
   }, [match]);
 
   noteData && console.log(noteData);
 
-  return <section className={st.note}></section>;
+  return (
+    <section className={st.note}>
+      <p className={st.title}>
+        {title}-{chapter}
+      </p>
+      <div className={st.test_note}>
+        <table>
+          {noteData.map((el) => (
+            <tbody>
+              <th>
+                <td>{el.en}</td>
+              </th>
+              <tr>
+                <td>{el.ko}</td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      </div>
+    </section>
+  );
 };
 
 export default Note;

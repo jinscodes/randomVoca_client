@@ -2,6 +2,7 @@ import Chapter from "components/Chapter/Chapter";
 import Note from "components/Note/Note";
 
 import Login from "components/Login/Login";
+import TestPaper from "components/TestPaper/TestPaper";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { DBDatas } from "types/types";
@@ -29,6 +30,7 @@ function App() {
         <>
           <Chapter dbDatas={dbDatas} setMatch={setMatch} />
           <Note dbDatas={dbDatas} match={match} />
+          <TestPaper dbDatas={dbDatas} match={match} />
         </>
       )}
     </section>
