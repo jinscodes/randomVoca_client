@@ -40,7 +40,7 @@ const Note = ({ dbDatas, match }: Prop) => {
   return (
     <section className={st.note}>
       <p className={st.title}>
-        {title}-{chapter}
+        Voca: {title}-{chapter}
       </p>
       <div className={st.test_note}>
         <table>

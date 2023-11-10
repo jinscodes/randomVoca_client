@@ -18,6 +18,9 @@ const Chapter = ({ dbDatas, setMatch }: Prop) => {
 
   return (
     <section className={st.chapter_container}>
+      <a href="/" className={st.logo}>
+        Random Voca
+      </a>
       Chapter
       {dbDatas.map((el, idx) => (
         <button
