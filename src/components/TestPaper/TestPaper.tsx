@@ -1,4 +1,5 @@
-import { DBDatas } from "types/types";
+import { useEffect, useState } from "react";
+import { DBDatas, TestNoteData } from "types/types";
 import st from "./TestPaper.module.scss";
 
 interface Props {
@@ -7,11 +8,33 @@ interface Props {
 }
 
 const TestPaper = ({ dbDatas, match }: Props) => {
+  const [testNote, setNoteData] = useState<TestNoteData[]>([
+    {
+      en: "",
+      ko: "",
+    },
+  ]);
   const title = match.split("|")[0];
   const chapter = match.split("|")[1];
   const filteredDatas = dbDatas.filter((data) => data.title === title);
   const en = filteredDatas[0] && filteredDatas[0].words_en;
   const ko = filteredDatas[0] && filteredDatas[0].words_ko;
+
+  useEffect(() => {
+    if (en && ko) {
+      setNoteData([]);
+      for (let i = 0; i < en.length; i++) {
+        setNoteData((prev) => [
+          ...prev,
+          {
+            en: en[i].name,
+          },
+        ]);
+      }
+    }
+  }, [match]);
+
+  testNote && console.log(testNote);
 
   return (
     <section className={st.test_paper}>
@@ -20,10 +43,14 @@ const TestPaper = ({ dbDatas, match }: Props) => {
       </p>
       <div className={st.test_note}>
         <table>
-          {["noteData"].map((el) => (
+          {testNote.map((el) => (
             <tbody>
-              <th>{/* <td>{el.en}</td> */}</th>
-              <tr>{/* <td>{el.ko}</td> */}</tr>
+              <th>
+                <td>{el.en}</td>
+              </th>
+              <tr>
+                <input type="text" placeholder={`${el.en}`} />
+              </tr>
             </tbody>
           ))}
         </table>

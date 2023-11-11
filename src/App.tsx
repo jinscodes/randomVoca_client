@@ -15,6 +15,10 @@ function App() {
           index: true,
           element: <Home />,
         },
+        // {
+        //   path: "/login",
+        //   element: <Login />,
+        // },
         {
           path: "/main",
           element: <Main />,
@@ -27,19 +31,7 @@ function App() {
     },
   ]);
 
-  return (
-    <RouterProvider router={router} />
-    // <section className={st.app}>
-    //   {!cookies.login && <Login />}
-    //   {cookies.login && dbDatas && (
-    //     <>
-    //       <Chapter dbDatas={dbDatas} setMatch={setMatch} />
-    //       <Note dbDatas={dbDatas} match={match} />
-    //       <TestPaper dbDatas={dbDatas} match={match} />
-    //     </>
-    //   )}
-    // </section>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

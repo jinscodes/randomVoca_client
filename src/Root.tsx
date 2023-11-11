@@ -7,8 +7,8 @@ const Root = () => {
 
   return (
     <>
-      {!cookies && <Login />}
-      {cookies && (
+      {!cookies.login && <Login />}
+      {cookies.login && (
         <div>
           <Outlet />
         </div>

@@ -17,3 +17,8 @@ export interface NoteData {
   en: string;
   ko: string;
 }
+
+export interface TestNoteData {
+  en: string;
+  ko?: string;
+}
