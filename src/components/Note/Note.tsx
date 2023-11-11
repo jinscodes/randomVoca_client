@@ -35,7 +35,7 @@ const Note = ({ dbDatas, match }: Prop) => {
     }
   }, [match]);
 
-  noteData && console.log(noteData);
+  // noteData && console.log(noteData);
 
   return (
     <section className={st.note}>

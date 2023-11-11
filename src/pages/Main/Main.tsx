@@ -20,7 +20,7 @@ const Main = () => {
       });
   }, []);
 
-  dbDatas && console.log(dbDatas);
+  // dbDatas && console.log(dbDatas);
 
   return (
     <section className={st.main}>
