@@ -34,8 +34,6 @@ const TestPaper = ({ dbDatas, match }: Props) => {
     }
   }, [match]);
 
-  testNote && console.log(testNote);
-
   return (
     <section className={st.test_paper}>
       <p className={st.title}>
@@ -43,16 +41,17 @@ const TestPaper = ({ dbDatas, match }: Props) => {
       </p>
       <div className={st.test_note}>
         <table>
-          {testNote.map((el) => (
-            <tbody>
-              <th>
-                <td>{el.en}</td>
-              </th>
-              <tr>
-                <input type="text" placeholder={`${el.en}`} />
-              </tr>
-            </tbody>
-          ))}
+          {testNote.length > 1 &&
+            testNote.map((el) => (
+              <tbody>
+                <th>
+                  <td>{el.en}</td>
+                </th>
+                <tr>
+                  <input type="text" placeholder={`${el.en}`} />
+                </tr>
+              </tbody>
+            ))}
         </table>
       </div>
     </section>

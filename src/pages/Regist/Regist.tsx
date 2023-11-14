@@ -1,5 +1,22 @@
+import st from "./Regist.module.scss";
+
 const Regist = () => {
-  return <div>Regist</div>;
+  return (
+    <section className={st.regist_container}>
+      <table>
+        <th>
+          <td>
+            <input />
+          </td>
+        </th>
+        <tr>
+          <td>
+            <input />
+          </td>
+        </tr>
+      </table>
+    </section>
+  );
 };
 
 export default Regist;
