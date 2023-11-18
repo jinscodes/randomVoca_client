@@ -2,39 +2,41 @@ import st from "./Regist.module.scss";
 
 const Regist = () => {
   const registVoca = async () => {
-    console.log("clicked");
-
-    await fetch("http://localhost:8000/regist", {
-      method: "POST",
-      body: JSON.stringify([
-        {
-          id: "jins99",
-          title: "경선식",
-          chapter: "ch1",
-          words_en: ["test", "test2"],
-          words_ko: ["테스트", " 테스트2"],
-          correct: 0,
-          wrong: 0,
-        },
-      ]),
-    }).then((res) => res.json());
+    try {
+      await fetch("http://localhost:8000/regist", {
+        method: "POST",
+        body: JSON.stringify({
+          id: "id test",
+          title: "title test",
+          chapter: "chapter test",
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+      alert("Fail");
+    }
   };
 
   return (
     <section className={st.regist_container}>
+      <div className={st.form_container}>
+        <div className={st.input_container}>
+          <input type="text" placeholder="EN" />
+          <input type="text" placeholder="KO" />
+        </div>
+        <button>Add</button>
+      </div>
       <table>
         <th>
-          <td>
-            <input />
-          </td>
+          <td></td>
+          <td></td>
         </th>
         <tr>
-          <td>
-            <input />
-          </td>
+          <td></td>
+          <td></td>
         </tr>
-        <button onClick={() => registVoca()}>button</button>
       </table>
+      <button>Submit</button>
     </section>
   );
 };
