@@ -1,6 +1,17 @@
+import { useState } from "react";
 import st from "./Regist.module.scss";
 
+interface AddToList {
+  en: string;
+  ko: string;
+}
+
 const Regist = () => {
+  const [wordArr, setWordArr] = useState<AddToList[]>();
+
+  const AddToList = (target: AddToList) => {
+    wordArr && setWordArr((prev) => prev?.concat(target));
+  };
   const registVoca = async () => {
     try {
       await fetch("http://localhost:8000/regist", {
@@ -16,6 +27,8 @@ const Regist = () => {
       alert("Fail");
     }
   };
+
+  console.log(wordArr);
 
   return (
     <section className={st.regist_container}>
