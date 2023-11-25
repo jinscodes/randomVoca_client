@@ -23,7 +23,9 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {
-          setCookies("login", data.token);
+          setCookies("login", data.token, {
+            maxAge: 60 * 60 * 24,
+          });
         } else {
           alert("아이디 또는 비밀번호가 잘못되었습니다. 다시 입력해주세요");
         }
