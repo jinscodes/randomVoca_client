@@ -1,3 +1,9 @@
+// Regist Title
+export interface VocabInfo {
+  title?: string;
+  chapter?: string;
+}
+
 export interface DBDatas {
   title: string;
   chapter: string;
@@ -19,6 +25,6 @@ export interface NoteData {
 }
 
 export interface TestNoteData {
-  en: string;
-  ko?: string;
+  en?: string | undefined;
+  ko?: string | undefined;
 }

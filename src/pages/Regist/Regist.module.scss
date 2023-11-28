@@ -54,11 +54,12 @@
   }
 
   table {
-    border: 1px solid black;
+    // border: 1px solid black;
     display: flex;
     justify-content: center;
     width: 700px;
     height: 1200px;
+    box-shadow: 0 0 5px 0 rgba($color: #000000, $alpha: 0.3);
 
     th,
     tr {
@@ -86,7 +87,7 @@
     }
   }
 
-  button {
+  .submit_btn {
     border: none;
     width: 700px;
     height: 50px;
