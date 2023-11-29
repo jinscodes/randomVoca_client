@@ -1,5 +1,6 @@
 import LeftArrow from "assets/svg/Left_arrow.svg";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { useRegistContext } from "context/RegistContext";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { VocabInfo } from "types/types";
 import st from "./RegistTitle.module.scss";
 
@@ -8,13 +9,10 @@ interface Props {
 }
 
 const RegistTitle = ({ setPage }: Props) => {
-  const [vocabInfo, setVocabInfo] = useState<VocabInfo>({
-    title: "",
-    chapter: "",
-  });
+  const { registValue, setRegistValue } = useRegistContext();
 
   const clickNextBtn = () => {
-    if (!vocabInfo?.title || !vocabInfo?.chapter)
+    if (!registValue?.title || !registValue?.chapter)
       return alert("Necessary values are empty");
 
     setPage("regist/words");
@@ -22,7 +20,7 @@ const RegistTitle = ({ setPage }: Props) => {
 
   const handleChange = (target: ChangeEvent<HTMLInputElement>, key: string) => {
     const value = target.currentTarget.value;
-    setVocabInfo((prev: VocabInfo) => ({
+    setRegistValue((prev: VocabInfo) => ({
       ...prev,
       [key]: value,
     }));
@@ -31,6 +29,8 @@ const RegistTitle = ({ setPage }: Props) => {
   const arrowClick = () => {
     window.location.href = "/";
   };
+
+  console.log("title", registValue);
 
   return (
     <section className={st.regist_title_container}>
@@ -54,6 +54,9 @@ const RegistTitle = ({ setPage }: Props) => {
           type="text"
           placeholder="Chapter"
           onChange={(target) => handleChange(target, "chapter")}
+          onKeyDown={(e) => {
+            e.key === "Enter" && setPage("regist/words");
+          }}
         />
       </div>
       <button onClick={() => clickNextBtn()}>Next</button>

@@ -1,3 +1,5 @@
+import { RegistProvider } from "context/RegistContext";
+import RegistFinal from "pages/Regist/RegistFinal/RegistFinal";
 import RegistTitle from "pages/Regist/RegistTitle/RegistTitle";
 import RegistWords from "pages/Regist/RegistWords/RegistWords";
 import { useState } from "react";
@@ -21,10 +23,11 @@ const Regist = () => {
   // };
 
   return (
-    <>
+    <RegistProvider>
       {page === "regist/title" && <RegistTitle setPage={setPage} />}
-      {page === "regist/words" && <RegistWords />}
-    </>
+      {page === "regist/words" && <RegistWords setPage={setPage} />}
+      {page === "regist/final" && <RegistFinal />}
+    </RegistProvider>
   );
 };
 
