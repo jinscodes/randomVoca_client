@@ -4,6 +4,24 @@ export interface VocabInfo {
   chapter?: string;
 }
 
+// Regist Value
+export interface RegistValue {
+  title?: string;
+  chapter?: string;
+  wordArr: AddToList[];
+}
+
+interface AddToList {
+  en: string | undefined;
+  ko: string | undefined;
+}
+
+// Regist Context
+export interface RegistContextType {
+  registValue: RegistValue;
+  setRegistValue: Dispatch<SetStateAction<RegistValue>>;
+}
+
 export interface DBDatas {
   title: string;
   chapter: string;
