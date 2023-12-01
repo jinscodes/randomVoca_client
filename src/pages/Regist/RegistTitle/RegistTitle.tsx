@@ -30,7 +30,7 @@ const RegistTitle = ({ setPage }: Props) => {
     window.location.href = "/";
   };
 
-  console.log("title", registValue);
+  // console.log("title", registValue);
 
   return (
     <section className={st.regist_title_container}>

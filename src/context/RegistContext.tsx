@@ -21,12 +21,7 @@ export const RegistProvider = ({ children }: PropsWithChildren) => {
   const [registValue, setRegistValue] = useState<RegistValue>({
     title: "",
     chapter: "",
-    wordArr: [
-      {
-        en: "",
-        ko: "",
-      },
-    ],
+    wordArr: [],
   });
 
   const value = { registValue, setRegistValue };
