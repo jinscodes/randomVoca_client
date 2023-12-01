@@ -37,6 +37,7 @@ const RegistWords = ({ setPage }: Props) => {
   };
 
   const clickNextBtn = () => {
+    if (registValue.wordArr.length === 0) return alert("Regist words");
     setPage("regist/final");
   };
 
