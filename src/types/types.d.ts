@@ -14,6 +14,7 @@ export interface RegistValue {
 interface AddToList {
   en: string | undefined;
   ko: string | undefined;
+  id?: string;
 }
 
 // Regist Context
