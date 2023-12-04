@@ -119,6 +119,9 @@ const RegistWords = ({ setPage }: Props) => {
           />
         </div>
         <button onClick={() => AddToList(word)}>Add</button>
+        <p className={st.cuation}>
+          If you want to erase the word, scroll(push) the note to right.
+        </p>
       </div>
       <table>
         <th>
