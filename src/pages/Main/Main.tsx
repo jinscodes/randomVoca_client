@@ -12,7 +12,7 @@ const Main = () => {
   const [match, setMatch] = useState<string>("");
 
   useEffect(() => {
-    fetch("http://localhost:8000/")
+    fetch("http://localhost:8080/")
       .then((response) => response.json())
       .then((payload) => {
         setDbDatas([]);

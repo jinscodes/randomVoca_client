@@ -15,10 +15,6 @@ function App() {
           index: true,
           element: <Home />,
         },
-        // {
-        //   path: "/login",
-        //   element: <Login />,
-        // },
         {
           path: "/main",
           element: <Main />,

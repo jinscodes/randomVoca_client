@@ -8,7 +8,7 @@ const Regist = () => {
   const [page, setPage] = useState<string>("regist/title");
   // const registVoca = async () => {
   //   try {
-  //     await fetch("http://localhost:8000/regist", {
+  //     await fetch("http://localhost:8080/regist", {
   //       method: "POST",
   //       body: JSON.stringify({
   //         id: "id test",
