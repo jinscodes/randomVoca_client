@@ -13,7 +13,7 @@ const Login = () => {
   const [cookies, setCookies] = useCookies(["login"]);
 
   const postLogin = async () => {
-    await fetch("http://localhost:8000/login", {
+    await fetch("http://localhost:8080/login", {
       method: "POST",
       body: JSON.stringify({
         id: id,
@@ -22,6 +22,8 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
+
         if (data.status === 200) {
           setCookies("login", data.token, {
             maxAge: 60 * 60 * 24,
