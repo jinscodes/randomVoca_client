@@ -1,11 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import st from "./Login.module.scss";
-
-interface FromDB {
-  id: string;
-  pw: string;
-}
 
 const Login = () => {
   const [id, setId] = useState<string>();
@@ -13,25 +9,42 @@ const Login = () => {
   const [cookies, setCookies] = useCookies(["login"]);
 
   const postLogin = async () => {
-    await fetch("http://localhost:8080/login", {
-      method: "POST",
-      body: JSON.stringify({
+    await axios
+      .post("http://localhost:8080/login", {
         id: id,
         pw: pw,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-
-        if (data.status === 200) {
-          setCookies("login", data.token, {
-            maxAge: 60 * 60 * 24,
-          });
-        } else {
-          alert("아이디 또는 비밀번호가 잘못되었습니다. 다시 입력해주세요");
-        }
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(id, pw);
+        console.log(err);
       });
+
+    // await fetch("http://localhost:8080/login", {
+    //   method: "POST",
+    //   mode: "cors",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     id: id,
+    //     pw: pw,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+
+    //     if (data.status === 200) {
+    //       setCookies("login", data.token, {
+    //         maxAge: 60 * 60 * 24,
+    //       });
+    //     } else {
+    //       alert("아이디 또는 비밀번호가 잘못되었습니다. 다시 입력해주세요");
+    //     }
+    //   });
   };
 
   return (
@@ -60,12 +73,7 @@ const Login = () => {
           />
         </label>
 
-        <button
-          onClick={() => {
-            postLogin();
-          }}
-          type="button"
-        >
+        <button onClick={() => postLogin()} type="button">
           SUBMIT
         </button>
       </form>
