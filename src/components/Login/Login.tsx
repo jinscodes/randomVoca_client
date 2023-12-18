@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 import st from "./Login.module.scss";
 
 const Login = () => {
@@ -15,41 +16,23 @@ const Login = () => {
         pw: pw,
       })
       .then((res) => {
-        console.log(res);
+        if (res.status === 200)
+          return setCookies("login", res.data.token, {
+            maxAge: 60 * 60 * 24,
+          });
+        return alert(
+          "아이디 또는 비밀번호가 잘못되었습니다. 다시 입력해주세요"
+        );
       })
       .catch((err) => {
-        console.log(id, pw);
         console.log(err);
       });
-
-    // await fetch("http://localhost:8080/login", {
-    //   method: "POST",
-    //   mode: "cors",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     id: id,
-    //     pw: pw,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-
-    //     if (data.status === 200) {
-    //       setCookies("login", data.token, {
-    //         maxAge: 60 * 60 * 24,
-    //       });
-    //     } else {
-    //       alert("아이디 또는 비밀번호가 잘못되었습니다. 다시 입력해주세요");
-    //     }
-    //   });
   };
 
   return (
     <section className={st.login}>
       <div>Login</div>
+
       <form acceptCharset="utf-8" method="POST" name="form">
         <label>
           ID
@@ -72,6 +55,10 @@ const Login = () => {
             }}
           />
         </label>
+
+        <div className={st.signup}>
+          <Link to={"/signup"}>Signup</Link>
+        </div>
 
         <button onClick={() => postLogin()} type="button">
           SUBMIT

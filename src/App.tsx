@@ -1,4 +1,6 @@
 import Root from "Root";
+import Login from "components/Login/Login";
+import Signup from "components/Signup/Signup";
 import Home from "pages/Home/Home";
 import Main from "pages/Main/Main";
 import Regist from "pages/Regist/Regist";
@@ -14,6 +16,14 @@ function App() {
         {
           index: true,
           element: <Home />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
         },
         {
           path: "/main",

@@ -1,4 +1,3 @@
-import Login from "components/Login/Login";
 import { useCookies } from "react-cookie";
 import { Outlet } from "react-router-dom";
 
@@ -7,12 +6,10 @@ const Root = () => {
 
   return (
     <>
-      {!cookies.login && <Login />}
-      {cookies.login && (
-        <div>
-          <Outlet />
-        </div>
-      )}
+      {/* {!cookies.login && <Login />} */}
+      <div>
+        <Outlet />
+      </div>
     </>
   );
 };
