@@ -1,4 +1,5 @@
 import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 import Logout from "../../assets/svg/Logout.svg";
 import st from "./Home.module.scss";
 
@@ -16,12 +17,14 @@ const Home = () => {
           <a href="/main">Note</a>
         </div>
       </section>
-      <img
-        src={Logout}
-        alt="logout"
-        className={st.logout}
-        onClick={() => rmCookies("login")}
-      />
+      <Link to={"/login"}>
+        <img
+          src={Logout}
+          alt="logout"
+          className={st.logout}
+          onClick={() => rmCookies("login")}
+        />
+      </Link>
     </section>
   );
 };
