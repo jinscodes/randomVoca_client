@@ -1,48 +1,48 @@
-import axios from "axios";
+import Birth from "components/Signup/Birth";
+import Name from "components/Signup/Name";
 import { useState } from "react";
 import st from "./Signup.module.scss";
 
 const Signup = () => {
-  const [id, setId] = useState<string>();
-  const [pw, setPw] = useState<string>();
+  const [step, setStep] = useState<"Name" | "Birth" | "email" | "ID">("Name");
+  const [lastname, setLastname] = useState<string>();
+  const [firstname, setFirstname] = useState<string>();
+  const [birth, setBirth] = useState<string>();
+  const [gender, setGender] = useState<string>();
 
-  const postSignup = async () => {
-    await axios.post("");
-  };
+  // const postSignup = async () => {
+  //   await axios
+  //     .post("http://localhost:8080/signup", {
+  //       id: "testid",
+  //       pw: "testpw",
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
 
-  console.log(id, pw);
+  //   await axios.get("http://localhost:8080/signup").then((res) => {
+  //     console.log(res);
+  //   });
+  // };
 
   return (
     <section className={st.signup}>
       <div>Signup</div>
 
-      <form acceptCharset="utf-8" method="POST" name="form">
-        <label>
-          ID
-          <input
-            name="id"
-            onChange={(e) => setId(e.target.value)}
-            placeholder="ID"
-            type="text"
-          />
-        </label>
-        <label>
-          PW
-          <input
-            name="pw"
-            onChange={(e) => setPw(e.target.value)}
-            placeholder="PW"
-            type="password"
-            onKeyDown={(e) => {
-              e.key === "Enter" && console.log("Entered");
-            }}
-          />
-        </label>
-
-        <button type="button" onClick={() => console.log("Clicked")}>
-          SUBMIT
-        </button>
-      </form>
+      {step === "Name" && (
+        <Name
+          setStep={setStep}
+          setLastname={setLastname}
+          setFirstname={setFirstname}
+        />
+      )}
+      {step === "Birth" && (
+        <Birth
+          setStep={setStep}
+          setBirth={setLastname}
+          setGender={setFirstname}
+        />
+      )}
     </section>
   );
 };

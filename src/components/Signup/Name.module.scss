@@ -1,0 +1,32 @@
+.descrip {
+  font-size: 15px;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  gap: 30px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    gap: 12px;
+  }
+
+  button {
+    width: 400px;
+    height: 50px;
+    outline: none;
+    border: none;
+    background-color: lightgray;
+    border-radius: 12px;
+    font-weight: bold;
+  }
+
+  button:active {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+}

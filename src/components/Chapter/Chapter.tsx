@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 import { DBDatas } from "types/types";
 import Logout from "../../assets/svg/Logout.svg";
 import st from "./Chapter.module.scss";
@@ -31,12 +32,14 @@ const Chapter = ({ dbDatas, setMatch }: Prop) => {
           {el.title} - {el.chapter}
         </button>
       ))}
-      <img
-        src={Logout}
-        alt="logout"
-        className={st.logout}
-        onClick={() => rmCookies("login")}
-      />
+      <Link to={"/login"}>
+        <img
+          src={Logout}
+          alt="logout"
+          className={st.logout}
+          onClick={() => rmCookies("login")}
+        />
+      </Link>
     </section>
   );
 };
