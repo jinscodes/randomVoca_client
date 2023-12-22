@@ -45,17 +45,8 @@ const Birth = ({ setBirth, setGender, setStep }: Props) => {
       <form acceptCharset="utf-8" method="POST" name="form">
         <span className={st.title}>Birth</span>
         <div className={st.calendar_container}>
-          <select
-            className={st.calendar}
-            value={form.year}
-            onChange={(e) => setForm({ ...form, year: Number(e.target.value) })}
-          >
-            {years.map((item) => (
-              <option value={item} key={item}>
-                {item}
-              </option>
-            ))}
-          </select>
+          <input type="number" className={st.calendar} placeholder="Year" />
+          <div className={st.month_title}>Month</div>
           <select
             className={st.calendar}
             value={form.month}
@@ -69,18 +60,11 @@ const Birth = ({ setBirth, setGender, setStep }: Props) => {
               </option>
             ))}
           </select>
-          <select
-            className={st.calendar}
-            value={form.day}
-            onChange={(e) => setForm({ ...form, day: Number(e.target.value) })}
-          >
-            {days.map((item) => (
-              <option value={item} key={item}>
-                {item}
-              </option>
-            ))}
-          </select>
+          <input type="number" className={st.calendar} placeholder="Date" />
         </div>
+        <option>
+          <select></select>
+        </option>
         <button
           type="button"
           onClick={() => {
