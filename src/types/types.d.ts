@@ -47,3 +47,10 @@ export interface TestNoteData {
   en?: string | undefined;
   ko?: string | undefined;
 }
+
+// Signup Birth
+export interface BirthType {
+  year: number;
+  month: number;
+  date: number;
+}

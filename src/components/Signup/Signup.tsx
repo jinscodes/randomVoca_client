@@ -1,13 +1,18 @@
 import Birth from "components/Signup/Birth";
 import Name from "components/Signup/Name";
 import { useState } from "react";
+import { BirthType } from "types/types";
 import st from "./Signup.module.scss";
 
 const Signup = () => {
   const [step, setStep] = useState<"Name" | "Birth" | "email" | "ID">("Name");
   const [lastname, setLastname] = useState<string>();
   const [firstname, setFirstname] = useState<string>();
-  const [birth, setBirth] = useState<string>();
+  const [birth, setBirth] = useState<BirthType>({
+    year: 0,
+    month: 0,
+    date: 0,
+  });
   const [gender, setGender] = useState<string>();
 
   // const postSignup = async () => {
@@ -25,6 +30,8 @@ const Signup = () => {
   //   });
   // };
 
+  // console.log(lastname, firstname, birth, gender);
+
   return (
     <section className={st.signup}>
       <div>Signup</div>
@@ -38,8 +45,10 @@ const Signup = () => {
       )}
       {step === "Birth" && (
         <Birth
+          gender={gender}
+          birth={birth}
           setStep={setStep}
-          setBirth={setLastname}
+          setBirth={setBirth}
           setGender={setFirstname}
         />
       )}
