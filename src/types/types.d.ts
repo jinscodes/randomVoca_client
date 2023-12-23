@@ -51,6 +51,6 @@ export interface TestNoteData {
 // Signup Birth
 export interface BirthType {
   year: number;
-  month: number;
+  month: string;
   date: number;
 }

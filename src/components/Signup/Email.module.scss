@@ -1,0 +1,15 @@
+.descrip {
+  font-size: 15px;
+  margin: 0;
+}
+
+.email_container {
+  display: flex;
+  width: 400px;
+  gap: 30px;
+
+  label {
+    font-size: 18px;
+    margin-bottom: -15px;
+  }
+}

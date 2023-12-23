@@ -1,19 +1,21 @@
 import Birth from "components/Signup/Birth";
+import Email from "components/Signup/Email";
 import Name from "components/Signup/Name";
 import { useState } from "react";
 import { BirthType } from "types/types";
 import st from "./Signup.module.scss";
 
 const Signup = () => {
-  const [step, setStep] = useState<"Name" | "Birth" | "email" | "ID">("Name");
+  const [step, setStep] = useState<"Name" | "Birth" | "Email" | "ID">("Name");
   const [lastname, setLastname] = useState<string>();
   const [firstname, setFirstname] = useState<string>();
   const [birth, setBirth] = useState<BirthType>({
     year: 0,
-    month: 0,
+    month: "January",
     date: 0,
   });
-  const [gender, setGender] = useState<string>();
+  const [gender, setGender] = useState<string>("");
+  const [email, setEmail] = useState<string | undefined>();
 
   // const postSignup = async () => {
   //   await axios
@@ -30,7 +32,7 @@ const Signup = () => {
   //   });
   // };
 
-  // console.log(lastname, firstname, birth, gender);
+  console.log(lastname, firstname, birth, gender, email);
 
   return (
     <section className={st.signup}>
@@ -49,9 +51,10 @@ const Signup = () => {
           birth={birth}
           setStep={setStep}
           setBirth={setBirth}
-          setGender={setFirstname}
+          setGender={setGender}
         />
       )}
+      {step === "Email" && <Email setEmail={setEmail} setStep={setStep} />}
     </section>
   );
 };
