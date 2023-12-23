@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import st from "./Name.module.scss";
 
 interface Prop {
-  setStep: Dispatch<SetStateAction<"Name" | "Birth" | "email" | "ID">>;
+  setStep: Dispatch<SetStateAction<"Name" | "Birth" | "Email" | "ID">>;
   setLastname: Dispatch<SetStateAction<string | undefined>>;
   setFirstname: Dispatch<SetStateAction<string | undefined>>;
 }
@@ -29,7 +29,7 @@ const Name = ({ setStep, setLastname, setFirstname }: Prop) => {
             setStep("Birth");
           }}
         >
-          SUBMIT
+          Next
         </button>
       </form>
     </>
