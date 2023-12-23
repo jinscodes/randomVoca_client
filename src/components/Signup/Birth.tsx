@@ -1,40 +1,27 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import { BirthType } from "types/types";
 import st from "./Birth.module.scss";
 
 interface Props {
+  birth: BirthType;
+  gender: string | undefined;
   setStep: Dispatch<SetStateAction<"Name" | "Birth" | "email" | "ID">>;
-  setBirth: Dispatch<SetStateAction<string | undefined>>;
+  setBirth: Dispatch<SetStateAction<BirthType>>;
   setGender: Dispatch<SetStateAction<string | undefined>>;
 }
 
-const Birth = ({ setBirth, setGender, setStep }: Props) => {
+const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
   const [form, setForm] = useState({
     year: 2023,
     month: 1,
     day: 1,
   });
-  const now = new Date();
-  let years = [];
   let month = [];
-  let days = [];
-  for (let y = now.getFullYear(); y >= 1930; y -= 1) {
-    years.push(y);
-  }
   for (let m = 1; m <= 12; m += 1) {
     if (m < 10) {
-      // 날짜가 2자리로 나타나야 했기 때문에 1자리 월에 0을 붙혀준다
       month.push("0" + m.toString());
     } else {
       month.push(m.toString());
-    }
-  }
-  let date = new Date(form.year, form.month, 0).getDate();
-  for (let d = 1; d <= date; d += 1) {
-    if (d < 10) {
-      // 날짜가 2자리로 나타나야 했기 때문에 1자리 일에 0을 붙혀준다
-      days.push("0" + d.toString());
-    } else {
-      days.push(d.toString());
     }
   }
 
@@ -45,14 +32,28 @@ const Birth = ({ setBirth, setGender, setStep }: Props) => {
       <form acceptCharset="utf-8" method="POST" name="form">
         <span className={st.title}>Birth</span>
         <div className={st.calendar_container}>
-          <input type="number" className={st.calendar} placeholder="Year" />
+          <input
+            onChange={(e) =>
+              setBirth((prev) => ({
+                ...prev,
+                year: Number(e.target.value),
+              }))
+            }
+            type="number"
+            className={st.calendar}
+            placeholder="Year"
+          />
           <div className={st.month_title}>Month</div>
           <select
             className={st.calendar}
-            value={form.month}
-            onChange={(e) =>
-              setForm({ ...form, month: Number(e.target.value) })
-            }
+            value={birth.month}
+            onChange={(e) => {
+              setForm({ ...form, month: Number(e.target.value) });
+              setBirth((prev) => ({
+                ...prev,
+                month: Number(e.target.value),
+              }));
+            }}
           >
             {month.map((item) => (
               <option value={item} key={item}>
@@ -60,11 +61,32 @@ const Birth = ({ setBirth, setGender, setStep }: Props) => {
               </option>
             ))}
           </select>
-          <input type="number" className={st.calendar} placeholder="Date" />
+          <input
+            onChange={(e) =>
+              setBirth((prev) => ({
+                ...prev,
+                date: Number(e.target.value),
+              }))
+            }
+            type="number"
+            className={st.calendar}
+            placeholder="Date"
+          />
         </div>
-        <option>
-          <select></select>
-        </option>
+        <select
+          onChange={(e) => {
+            console.log(e.target.value);
+          }}
+          className={st.gender}
+          value={gender}
+        >
+          <option value="" selected hidden>
+            Gender
+          </option>
+          <option value="m">Male</option>
+          <option value="f">Female</option>
+          <option value="r">Rather not say</option>
+        </select>
         <button
           type="button"
           onClick={() => {
