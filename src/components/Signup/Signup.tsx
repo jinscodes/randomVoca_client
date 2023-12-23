@@ -1,8 +1,9 @@
 import Birth from "components/Signup/Birth";
 import Email from "components/Signup/Email";
+import Id from "components/Signup/Id";
 import Name from "components/Signup/Name";
 import { useState } from "react";
-import { BirthType } from "types/types";
+import { BirthType, IdType } from "types/types";
 import st from "./Signup.module.scss";
 
 const Signup = () => {
@@ -16,6 +17,10 @@ const Signup = () => {
   });
   const [gender, setGender] = useState<string>("");
   const [email, setEmail] = useState<string | undefined>();
+  const [id, setId] = useState<IdType>({
+    id: "",
+    pw: "",
+  });
 
   // const postSignup = async () => {
   //   await axios
@@ -32,7 +37,7 @@ const Signup = () => {
   //   });
   // };
 
-  console.log(lastname, firstname, birth, gender, email);
+  console.log(lastname, firstname, birth, gender, email, id);
 
   return (
     <section className={st.signup}>
@@ -55,6 +60,7 @@ const Signup = () => {
         />
       )}
       {step === "Email" && <Email setEmail={setEmail} setStep={setStep} />}
+      {step === "ID" && <Id setId={setId} />}
     </section>
   );
 };

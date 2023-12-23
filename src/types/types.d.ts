@@ -54,3 +54,9 @@ export interface BirthType {
   month: string;
   date: number;
 }
+
+// Signup Id
+export interface IdType {
+  id: string;
+  pw: string;
+}
