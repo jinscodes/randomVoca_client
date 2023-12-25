@@ -60,3 +60,13 @@ export interface IdType {
   id: string;
   pw: string;
 }
+
+// Signup Values
+export interface ValuesType {
+  lastname: string | undefined;
+  firstname: string | undefined;
+  birth: BirthType;
+  gender: string;
+  email: string | undefined;
+  id: IdType;
+}

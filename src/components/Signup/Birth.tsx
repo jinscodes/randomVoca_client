@@ -5,7 +5,9 @@ import st from "./Birth.module.scss";
 interface Props {
   birth: BirthType;
   gender: string;
-  setStep: Dispatch<SetStateAction<"Name" | "Birth" | "Email" | "ID">>;
+  setStep: Dispatch<
+    SetStateAction<"Name" | "Birth" | "Email" | "ID" | "check">
+  >;
   setBirth: Dispatch<SetStateAction<BirthType>>;
   setGender: Dispatch<SetStateAction<string>>;
 }
@@ -46,7 +48,7 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
 
   return (
     <>
-      <p className={st.descrip}>Please enter your name and gender.</p>
+      <p className={st.descrip}>Please enter your birth and gender.</p>
 
       <div className={st.birth_container}>
         <span className={st.title}>Birth</span>

@@ -1,13 +1,16 @@
 import Birth from "components/Signup/Birth";
+import Check from "components/Signup/Check";
 import Email from "components/Signup/Email";
 import Id from "components/Signup/Id";
 import Name from "components/Signup/Name";
 import { useState } from "react";
-import { BirthType, IdType } from "types/types";
+import { BirthType, IdType, ValuesType } from "types/types";
 import st from "./Signup.module.scss";
 
 const Signup = () => {
-  const [step, setStep] = useState<"Name" | "Birth" | "Email" | "ID">("Name");
+  const [step, setStep] = useState<"Name" | "Birth" | "Email" | "ID" | "check">(
+    "Name"
+  );
   const [lastname, setLastname] = useState<string>();
   const [firstname, setFirstname] = useState<string>();
   const [birth, setBirth] = useState<BirthType>({
@@ -16,11 +19,19 @@ const Signup = () => {
     date: 0,
   });
   const [gender, setGender] = useState<string>("");
-  const [email, setEmail] = useState<string | undefined>();
+  const [email, setEmail] = useState<string>();
   const [id, setId] = useState<IdType>({
     id: "",
     pw: "",
   });
+  const value: ValuesType = {
+    lastname,
+    firstname,
+    birth,
+    gender,
+    email,
+    id,
+  };
 
   // const postSignup = async () => {
   //   await axios
@@ -37,7 +48,7 @@ const Signup = () => {
   //   });
   // };
 
-  // console.log(lastname, firstname, birth, gender, email, id);
+  console.log(value);
 
   return (
     <section className={st.signup}>
@@ -63,7 +74,8 @@ const Signup = () => {
       {step === "Email" && (
         <Email email={email} setEmail={setEmail} setStep={setStep} />
       )}
-      {step === "ID" && <Id id={id} setId={setId} />}
+      {step === "ID" && <Id id={id} setId={setId} setStep={setStep} />}
+      {step === "check" && <Check />}
     </section>
   );
 };
