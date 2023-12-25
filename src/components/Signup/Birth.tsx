@@ -34,6 +34,11 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
       setTimeout(() => {
         setBirthValid(false);
       }, 2000);
+    } else if (gender === "") {
+      setGenderValid(true);
+      setTimeout(() => {
+        setGenderValid(false);
+      }, 2000);
     } else {
       setStep("Email");
     }
@@ -89,7 +94,7 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
           />
         </div>
         {birthValid && (
-          <span className={st.birthValid}>🚨 Please enter a birth.</span>
+          <span className={st.valid}>🚨 Please enter a birth.</span>
         )}
 
         <span className={st.title}>Gender</span>
@@ -107,6 +112,9 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
           <option value="f">Female</option>
           <option value="r">Rather not say</option>
         </select>
+        {genderValid && (
+          <span className={st.valid}>🚨 Please enter a gender.</span>
+        )}
 
         <button type="button" onClick={() => geNextStep()}>
           Next
