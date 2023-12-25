@@ -45,6 +45,7 @@ const Signup = () => {
 
       {step === "Name" && (
         <Name
+          firstname={firstname}
           setStep={setStep}
           setLastname={setLastname}
           setFirstname={setFirstname}
