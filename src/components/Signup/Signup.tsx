@@ -37,7 +37,7 @@ const Signup = () => {
   //   });
   // };
 
-  console.log(lastname, firstname, birth, gender, email, id);
+  // console.log(lastname, firstname, birth, gender, email, id);
 
   return (
     <section className={st.signup}>
@@ -60,8 +60,10 @@ const Signup = () => {
           setGender={setGender}
         />
       )}
-      {step === "Email" && <Email setEmail={setEmail} setStep={setStep} />}
-      {step === "ID" && <Id setId={setId} />}
+      {step === "Email" && (
+        <Email email={email} setEmail={setEmail} setStep={setStep} />
+      )}
+      {step === "ID" && <Id id={id} setId={setId} />}
     </section>
   );
 };

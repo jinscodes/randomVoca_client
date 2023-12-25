@@ -3,15 +3,16 @@ import { IdType } from "types/types";
 import st from "./Id.module.scss";
 
 interface Props {
+  id: IdType;
   setId: Dispatch<SetStateAction<IdType>>;
 }
 
-const Id = ({ setId }: Props) => {
+const Id = ({ id, setId }: Props) => {
   return (
     <>
       <p className={st.descrip}>Please enter your id and pw.</p>
 
-      <form className={st.id_container}>
+      <div className={st.id_container}>
         <label>Id</label>
         <input
           className={st.input}
@@ -24,6 +25,8 @@ const Id = ({ setId }: Props) => {
             }))
           }
         />
+        {id.id && <span className={st.valid}>🚨 Please enter a id.</span>}
+
         <label>Pw</label>
         <input
           className={st.input}
@@ -36,9 +39,10 @@ const Id = ({ setId }: Props) => {
             }))
           }
         />
+        {id.pw && <span className={st.valid}>🚨 Please enter a pw.</span>}
 
-        <button>Submit</button>
-      </form>
+        <button onClick={() => console.log("Click")}>Submit</button>
+      </div>
     </>
   );
 };

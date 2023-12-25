@@ -26,7 +26,7 @@ const Name = ({ firstname, setStep, setLastname, setFirstname }: Prop) => {
     <>
       <p className={st.descrip}>Please enter your name.</p>
 
-      <form acceptCharset="utf-8" method="POST" name="form">
+      <div className={st.name_container}>
         <label>
           Firstname
           <Input name="fName" placeholder="name" setState={setFirstname} />
@@ -46,7 +46,7 @@ const Name = ({ firstname, setStep, setLastname, setFirstname }: Prop) => {
         <button type="button" onClick={() => goNextStep()}>
           Next
         </button>
-      </form>
+      </div>
     </>
   );
 };
