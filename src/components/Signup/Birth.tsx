@@ -48,7 +48,7 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
     <>
       <p className={st.descrip}>Please enter your name and gender.</p>
 
-      <form>
+      <div className={st.birth_container}>
         <span className={st.title}>Birth</span>
         <div className={st.calendar_container}>
           <div className={st.month_title}>Month</div>
@@ -116,10 +116,14 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
           <span className={st.valid}>🚨 Please enter a gender.</span>
         )}
 
-        <button type="button" onClick={() => geNextStep()}>
+        <button
+          className={st.button}
+          type="button"
+          onClick={() => geNextStep()}
+        >
           Next
         </button>
-      </form>
+      </div>
     </>
   );
 };
