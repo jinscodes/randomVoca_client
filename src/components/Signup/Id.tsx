@@ -1,13 +1,35 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { IdType } from "types/types";
 import st from "./Id.module.scss";
 
 interface Props {
   id: IdType;
   setId: Dispatch<SetStateAction<IdType>>;
+  setStep: Dispatch<
+    SetStateAction<"Name" | "Birth" | "Email" | "ID" | "check">
+  >;
 }
 
-const Id = ({ id, setId }: Props) => {
+const Id = ({ id, setId, setStep }: Props) => {
+  const [idValid, setIdValid] = useState<boolean>(false);
+  const [pwValid, setPwValid] = useState<boolean>(false);
+
+  const goNextStep = () => {
+    if (id.id === "") {
+      setIdValid(true);
+      setTimeout(() => {
+        setIdValid(false);
+      }, 2000);
+    } else if (id.pw === "") {
+      setPwValid(true);
+      setTimeout(() => {
+        setPwValid(false);
+      }, 2000);
+    } else {
+      setStep("check");
+    }
+  };
+
   return (
     <>
       <p className={st.descrip}>Please enter your id and pw.</p>
@@ -25,7 +47,7 @@ const Id = ({ id, setId }: Props) => {
             }))
           }
         />
-        {id.id && <span className={st.valid}>🚨 Please enter a id.</span>}
+        {idValid && <span className={st.valid}>🚨 Please enter an id.</span>}
 
         <label>Pw</label>
         <input
@@ -39,9 +61,9 @@ const Id = ({ id, setId }: Props) => {
             }))
           }
         />
-        {id.pw && <span className={st.valid}>🚨 Please enter a pw.</span>}
+        {pwValid && <span className={st.valid}>🚨 Please enter a pw.</span>}
 
-        <button onClick={() => console.log("Click")}>Submit</button>
+        <button onClick={() => goNextStep()}>Submit</button>
       </div>
     </>
   );

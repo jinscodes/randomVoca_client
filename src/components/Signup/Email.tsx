@@ -4,7 +4,9 @@ import st from "./Email.module.scss";
 
 interface Props {
   email: string | undefined;
-  setStep: Dispatch<SetStateAction<"Name" | "Birth" | "Email" | "ID">>;
+  setStep: Dispatch<
+    SetStateAction<"Name" | "Birth" | "Email" | "ID" | "check">
+  >;
   setEmail: Dispatch<SetStateAction<string | undefined>>;
 }
 
@@ -28,7 +30,7 @@ const Email = ({ email, setStep, setEmail }: Props) => {
       <div className={st.email_container}>
         <label>Email</label>
         <Input name="email" placeholder="email" setState={setEmail} />
-        {valid && <span className={st.valid}>🚨 Please enter a email.</span>}
+        {valid && <span className={st.valid}>🚨 Please enter an email.</span>}
 
         <button onClick={() => goNextStep()}>Next</button>
       </div>

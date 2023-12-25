@@ -4,7 +4,9 @@ import st from "./Name.module.scss";
 
 interface Prop {
   firstname: string | undefined;
-  setStep: Dispatch<SetStateAction<"Name" | "Birth" | "Email" | "ID">>;
+  setStep: Dispatch<
+    SetStateAction<"Name" | "Birth" | "Email" | "ID" | "check">
+  >;
   setLastname: Dispatch<SetStateAction<string | undefined>>;
   setFirstname: Dispatch<SetStateAction<string | undefined>>;
 }
