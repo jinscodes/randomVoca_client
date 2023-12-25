@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { BirthType } from "types/types";
 import st from "./Birth.module.scss";
 
@@ -10,21 +10,34 @@ interface Props {
   setGender: Dispatch<SetStateAction<string>>;
 }
 
+let month = [
+  "January",
+  "Febuary",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
-  let month = [
-    "January",
-    "Febuary",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const [birthValid, setBirthValid] = useState<boolean>(false);
+  const [genderValid, setGenderValid] = useState<boolean>(false);
+  const geNextStep = () => {
+    if (birth.year === 0 || birth.month === "" || birth.date === 0) {
+      setBirthValid(true);
+      setTimeout(() => {
+        setBirthValid(false);
+      }, 2000);
+    } else {
+      setStep("Email");
+    }
+  };
 
   return (
     <>
@@ -43,6 +56,9 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
               }));
             }}
           >
+            <option value="" selected hidden>
+              Month
+            </option>
             {month.map((item) => (
               <option value={item} key={item} selected={item === birth.month}>
                 {item}
@@ -72,6 +88,9 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
             placeholder="Year"
           />
         </div>
+        {birthValid && (
+          <span className={st.birthValid}>🚨 Please enter a birth.</span>
+        )}
 
         <span className={st.title}>Gender</span>
         <select
@@ -89,12 +108,7 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
           <option value="r">Rather not say</option>
         </select>
 
-        <button
-          type="button"
-          onClick={() => {
-            setStep("Email");
-          }}
-        >
+        <button type="button" onClick={() => geNextStep()}>
           Next
         </button>
       </form>
