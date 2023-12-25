@@ -12,7 +12,7 @@ const Signup = () => {
   const [firstname, setFirstname] = useState<string>();
   const [birth, setBirth] = useState<BirthType>({
     year: 0,
-    month: "January",
+    month: "",
     date: 0,
   });
   const [gender, setGender] = useState<string>("");

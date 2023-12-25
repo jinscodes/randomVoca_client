@@ -11,7 +11,7 @@ interface Prop {
 
 const Name = ({ firstname, setStep, setLastname, setFirstname }: Prop) => {
   const [valid, setValid] = useState<boolean>(false);
-  const nextStep = () => {
+  const goNextStep = () => {
     if (firstname) {
       setStep("Birth");
     } else {
@@ -43,7 +43,7 @@ const Name = ({ firstname, setStep, setLastname, setFirstname }: Prop) => {
           />
         </label>
 
-        <button type="button" onClick={() => nextStep()}>
+        <button type="button" onClick={() => goNextStep()}>
           Next
         </button>
       </form>
