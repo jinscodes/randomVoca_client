@@ -42,13 +42,9 @@ const Signup = () => {
   //     .then((res) => {
   //       console.log(res);
   //     });
-
-  //   await axios.get("http://localhost:8080/signup").then((res) => {
-  //     console.log(res);
-  //   });
   // };
 
-  console.log(values);
+  // console.log(values);
 
   return (
     <section className={st.signup}>
