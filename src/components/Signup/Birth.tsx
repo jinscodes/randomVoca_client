@@ -1,3 +1,4 @@
+import { switchingMonth } from "hooks/useSwitchMonth";
 import { Dispatch, SetStateAction, useState } from "react";
 import { BirthType } from "types/types";
 import st from "./Birth.module.scss";
@@ -31,6 +32,7 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
   const [isOverDate, setIsOverDate] = useState<boolean>(false);
   const [birthValid, setBirthValid] = useState<boolean>(false);
   const [genderValid, setGenderValid] = useState<boolean>(false);
+  let year = new Date().getFullYear();
   let days: string[] = [];
   let date = new Date(birth.year, switchingMonth(birth.month), 0).getDate();
   for (let d = 1; d <= date; d += 1) {
@@ -42,8 +44,7 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
   }
 
   const geNextStep = () => {
-    if (birth.date > Number(days[days.length - 1])) {
-      console.log("boooom");
+    if (birth.date > Number(days[days.length - 1]) || birth.year > year) {
       setIsOverDate(true);
       setTimeout(() => {
         setIsOverDate(false);
@@ -153,34 +154,3 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
 };
 
 export default Birth;
-
-const switchingMonth = (month: string) => {
-  switch (month) {
-    case "January":
-      return 1;
-    case "Febuary":
-      return 2;
-    case "March":
-      return 3;
-    case "April":
-      return 4;
-    case "May":
-      return 5;
-    case "June":
-      return 6;
-    case "July":
-      return 7;
-    case "August":
-      return 8;
-    case "September":
-      return 9;
-    case "October":
-      return 10;
-    case "November":
-      return 11;
-    case "December":
-      return 12;
-  }
-
-  return 0;
-};
