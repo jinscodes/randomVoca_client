@@ -5,7 +5,12 @@
   gap: 30px;
   font-size: 18px;
 
-  div {
+  div div:first-child {
+    margin-bottom: 10px;
+    padding-left: 5px;
+  }
+
+  div div:last-child {
     display: flex;
     align-items: center;
     width: calc(400px - 12px);
@@ -16,5 +21,23 @@
     border-radius: 12px;
     border: none;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  button {
+    width: 400px;
+    height: 50px;
+    outline: none;
+    border: none;
+    background-color: lightgray;
+    border-radius: 12px;
+    font-weight: bold;
+  }
+
+  button:active {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.25);
   }
 }
