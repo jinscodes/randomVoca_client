@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import axios from "axios";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { IdType } from "types/types";
 import st from "./Id.module.scss";
 
@@ -13,6 +14,9 @@ interface Props {
 const Id = ({ id, setId, setStep }: Props) => {
   const [idValid, setIdValid] = useState<boolean>(false);
   const [pwValid, setPwValid] = useState<boolean>(false);
+  const [checkId, setCheckId] = useState<"default" | "possible" | "impossible">(
+    "default"
+  );
 
   const goNextStep = () => {
     if (id.id === "") {
@@ -29,6 +33,21 @@ const Id = ({ id, setId, setStep }: Props) => {
       setStep("check");
     }
   };
+
+  const PostForCheckId = async () => {
+    await axios
+      .post("http://localhost:8080/signup/id", {
+        id: id.id,
+      })
+      .then((res) => {
+        if (res.data.checking === "possible") return setCheckId("possible");
+        return setCheckId("impossible");
+      });
+  };
+
+  useEffect(() => {
+    setCheckId("default");
+  }, [id.id]);
 
   return (
     <>
@@ -63,7 +82,23 @@ const Id = ({ id, setId, setStep }: Props) => {
         />
         {pwValid && <span className={st.valid}>🚨 Please enter a pw.</span>}
 
-        <button onClick={() => goNextStep()}>Submit</button>
+        {checkId === "possible" && (
+          <div className={`${st.check_msg} ${st.use_id}`}>
+            You can use this id.
+          </div>
+        )}
+        {checkId === "impossible" && (
+          <div className={`${st.check_msg} ${st.not_use_id}`}>
+            This id already exists.
+          </div>
+        )}
+
+        {(checkId === "default" || checkId === "impossible") && (
+          <button onClick={() => PostForCheckId()}>Check</button>
+        )}
+        {checkId === "possible" && (
+          <button onClick={() => goNextStep()}>Submit</button>
+        )}
       </div>
     </>
   );
