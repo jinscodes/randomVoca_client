@@ -40,7 +40,7 @@ export const Check = ({ values }: Props) => {
         <div>{values.id.pw}</div>
       </div>
 
-      <button>Submit</button>
+      <button onClick={() => postSignup(values)}>Submit</button>
     </div>
   );
 };

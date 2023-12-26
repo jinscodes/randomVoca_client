@@ -28,9 +28,28 @@ let month = [
 ];
 
 const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
+  const [isOverDate, setIsOverDate] = useState<boolean>(false);
   const [birthValid, setBirthValid] = useState<boolean>(false);
   const [genderValid, setGenderValid] = useState<boolean>(false);
+  let days: string[] = [];
+  let date = new Date(birth.year, switchingMonth(birth.month), 0).getDate();
+  for (let d = 1; d <= date; d += 1) {
+    if (d < 10) {
+      days.push("0" + d.toString());
+    } else {
+      days.push(d.toString());
+    }
+  }
+
   const geNextStep = () => {
+    if (birth.date > Number(days[days.length - 1])) {
+      console.log("boooom");
+      setIsOverDate(true);
+      setTimeout(() => {
+        setIsOverDate(false);
+      }, 2000);
+    }
+
     if (birth.year === 0 || birth.month === "" || birth.date === 0) {
       setBirthValid(true);
       setTimeout(() => {
@@ -98,6 +117,9 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
         {birthValid && (
           <span className={st.valid}>🚨 Please enter a birth.</span>
         )}
+        {isOverDate && (
+          <span className={st.valid}>🚨 Please choose the right date.</span>
+        )}
 
         <span className={st.title}>Gender</span>
         <select
@@ -131,3 +153,34 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
 };
 
 export default Birth;
+
+const switchingMonth = (month: string) => {
+  switch (month) {
+    case "January":
+      return 1;
+    case "Febuary":
+      return 2;
+    case "March":
+      return 3;
+    case "April":
+      return 4;
+    case "May":
+      return 5;
+    case "June":
+      return 6;
+    case "July":
+      return 7;
+    case "August":
+      return 8;
+    case "September":
+      return 9;
+    case "October":
+      return 10;
+    case "November":
+      return 11;
+    case "December":
+      return 12;
+  }
+
+  return 0;
+};
