@@ -24,7 +24,7 @@ const Signup = () => {
     id: "",
     pw: "",
   });
-  const value: ValuesType = {
+  const values: ValuesType = {
     lastname,
     firstname,
     birth,
@@ -48,7 +48,7 @@ const Signup = () => {
   //   });
   // };
 
-  console.log(value);
+  console.log(values);
 
   return (
     <section className={st.signup}>
@@ -75,7 +75,7 @@ const Signup = () => {
         <Email email={email} setEmail={setEmail} setStep={setStep} />
       )}
       {step === "ID" && <Id id={id} setId={setId} setStep={setStep} />}
-      {step === "check" && <Check />}
+      {step === "check" && <Check values={values} />}
     </section>
   );
 };
