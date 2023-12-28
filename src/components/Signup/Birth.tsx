@@ -44,14 +44,14 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
   }
 
   const geNextStep = () => {
-    if (birth.date > Number(days[days.length - 1]) || birth.year > year) {
+    if (birth.day > Number(days[days.length - 1]) || birth.year > year) {
       setIsOverDate(true);
       setTimeout(() => {
         setIsOverDate(false);
       }, 2000);
     }
 
-    if (birth.year === 0 || birth.month === "" || birth.date === 0) {
+    if (birth.year === 0 || birth.month === "" || birth.day === 0) {
       setBirthValid(true);
       setTimeout(() => {
         setBirthValid(false);
@@ -96,7 +96,7 @@ const Birth = ({ birth, gender, setBirth, setGender, setStep }: Props) => {
             onChange={(e) =>
               setBirth((prev) => ({
                 ...prev,
-                date: Number(e.target.value),
+                day: Number(e.target.value),
               }))
             }
             type="number"

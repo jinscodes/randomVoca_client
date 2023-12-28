@@ -20,7 +20,7 @@ export const Check = ({ values }: Props) => {
       <div>
         <div>Birth</div>
         <div>
-          {values.birth.month}-{values.birth.date}-{values.birth.year}
+          {values.birth.month}-{values.birth.day}-{values.birth.year}
         </div>
       </div>
       <div>
