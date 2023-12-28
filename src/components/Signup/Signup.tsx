@@ -33,19 +33,6 @@ const Signup = () => {
     id,
   };
 
-  // const postSignup = async () => {
-  //   await axios
-  //     .post("http://localhost:8080/signup", {
-  //       id: "testid",
-  //       pw: "testpw",
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //     });
-  // };
-
-  // console.log(values);
-
   return (
     <section className={st.signup}>
       <div>Signup</div>
@@ -71,7 +58,9 @@ const Signup = () => {
         <Email email={email} setEmail={setEmail} setStep={setStep} />
       )}
       {step === "ID" && <Id id={id} setId={setId} setStep={setStep} />}
-      {step === "check" && <Check values={values} />}
+      {step === "check" && (
+        <Check values={values} step={step} setStep={setStep} />
+      )}
     </section>
   );
 };
