@@ -52,7 +52,7 @@ export interface TestNoteData {
 export interface BirthType {
   year: number;
   month: string;
-  date: number;
+  day: number;
 }
 
 // Signup Id
