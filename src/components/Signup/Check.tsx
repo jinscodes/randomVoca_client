@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { ValuesType } from "types/types";
 import st from "./Check.module.scss";
 
@@ -12,25 +12,6 @@ interface Props {
 }
 
 export const Check = ({ values, step, setStep }: Props) => {
-  useEffect(() => {
-    if (step === "Name")
-      values = {
-        lastname: "",
-        firstname: "",
-        birth: {
-          year: 0,
-          month: "",
-          day: 0,
-        },
-        gender: "",
-        email: "",
-        id: {
-          id: "",
-          pw: "",
-        },
-      };
-  }, []);
-
   if (values)
     return (
       <div className={st.check_container}>
